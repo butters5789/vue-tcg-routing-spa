@@ -38,6 +38,10 @@ const router = createRouter({
         default: UsersList,
         footer: UsersFooter,
       },
+      beforeEnter(to, from, next) {
+        console.log('Before User Route', to, from);
+        next();
+      },
     },
     {
       path: '/:notFound(.*)',
@@ -51,7 +55,16 @@ const router = createRouter({
     }
 
     return { top: 0, left: 0 };
-  }
+  },
+});
+
+router.beforeEach((to, from, next) => {
+  console.log('Before Each Route', to, from);
+  next();
+});
+
+router.afterEach((to, from) => {
+  console.log('After Each Route', to, from);
 });
 
 const app = createApp(App);

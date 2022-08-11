@@ -1,6 +1,11 @@
 <template>
   <ul>
-    <user-item v-for="user in users" :key="user.id" :name="user.fullName" :role="user.role"></user-item>
+    <user-item
+      v-for="user in users"
+      :key="user.id"
+      :name="user.fullName"
+      :role="user.role"
+    ></user-item>
   </ul>
 </template>
 
@@ -12,6 +17,10 @@ export default {
     UserItem,
   },
   inject: ['users'],
+  beforeRouteEnter(to, from, next) {
+    console.log('Before Route Enter', to, from);
+    next();
+  },
 };
 </script>
 
